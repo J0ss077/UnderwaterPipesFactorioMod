@@ -2,14 +2,17 @@
 Version: 1.1.0
 Date: 25-10-2025
   Info:
-    - Full code refactorization
-    - Only english and russian locale for now
-    - Increased visibility of pipes
-    - Blueprints fixed (hopefully)
-    - Fluid visualization fixed
+    - Full code refactorization.
+  Locale:
+    - Only english and russian locale for now.
+  Changes:
+    - Increased visibility of pipes.
+  Bugfixes:
+    - Blueprints fixed (hopefully).
+    - Fluid visualization fixed.
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Date: 21-10-2025
   Info:
-    - Initial release
+    - Initial release.
