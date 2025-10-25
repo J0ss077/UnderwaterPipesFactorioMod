@@ -1,4 +1,4 @@
-local data_carrier = data.raw["mod-data"]["underwater-pipes-data-carrier"]
+local data_carrier = data.raw["mod-data"]["F077UP-data-carrier"]
 
 local utils = require("scripts.others.utils")
 
@@ -43,7 +43,7 @@ function module.make_underwater_entity(entity_prototype)
     --
     local new_entity_prototype = table.deepcopy(entity_prototype)
 
-    new_entity_prototype.name = "underwater-" .. new_entity_prototype.name
+    new_entity_prototype.name = "F077UP-underwater-" .. new_entity_prototype.name
 
     for cover_name, cover in pairs(new_entity_prototype.fluid_box.pipe_covers) do
         --
@@ -60,7 +60,7 @@ function module.make_underwater_entity(entity_prototype)
 
     new_entity_prototype.collision_mask = { layers = { ground_tile = true } }
 
-    new_entity_prototype.minable.result = "underwater-" .. new_entity_prototype.minable.result
+    new_entity_prototype.minable.result = "F077UP-underwater-" .. new_entity_prototype.minable.result
 
     table.insert(data_carrier.data.underwater_entities, new_entity_prototype.name)
 
@@ -75,9 +75,9 @@ function module.make_underwater_item(item_prototype)
     --
     local new_item_prototype = table.deepcopy(item_prototype)
 
-    new_item_prototype.name = "underwater-" .. new_item_prototype.name
+    new_item_prototype.name = "F077UP-underwater-" .. new_item_prototype.name
 
-    new_item_prototype.place_result = "underwater-" .. new_item_prototype.place_result
+    new_item_prototype.place_result = "F077UP-underwater-" .. new_item_prototype.place_result
 
     utils.parse_item_icons(new_item_prototype)
 
@@ -116,7 +116,7 @@ function module.make_underwater_recipe(recipe_prototype)
     --
     local new_recipe_prototype = table.deepcopy(recipe_prototype)
 
-    new_recipe_prototype.name = "underwater-" .. new_recipe_prototype.name
+    new_recipe_prototype.name = "F077UP-underwater-" .. new_recipe_prototype.name
 
     new_recipe_prototype.ingredients = {
         --

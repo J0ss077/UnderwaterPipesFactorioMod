@@ -1,0 +1,20 @@
+{
+    "technology": [["underwater-pipes", "F077UP-technology"]],
+
+    "mod-data": [["underwater-pipes-data-carrier", "F077UP-data-carrier"]],
+
+    "entity": [
+        ["underwater-pipe", "F077UP-underwater-pipe"],
+        ["underwater-pipe-to-ground", "F077UP-underwater-pipe-to-ground"]
+    ],
+
+    "item": [
+        ["underwater-pipe", "F077UP-underwater-pipe"],
+        ["underwater-pipe-to-ground", "F077UP-underwater-pipe-to-ground"]
+    ],
+
+    "recipe": [
+        ["underwater-pipe", "F077UP-underwater-pipe"],
+        ["underwater-pipe-to-ground", "F077UP-underwater-pipe-to-ground"]
+    ]
+}

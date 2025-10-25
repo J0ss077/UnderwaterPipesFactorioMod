@@ -25,7 +25,7 @@ data:extend({ reci_underwater_pipe, reci_underwater_pitg })
 data:extend({
     {
         type = "technology",
-        name = "underwater-pipes",
+        name = "F077UP-technology",
         prerequisites = { "concrete", "steel-processing" },
         icon = "__underwater-pipes-updated__/graphics/technology.png",
         icon_size = 128,
@@ -43,12 +43,12 @@ data:extend({
 
 if not reci_underwater_pipe.enabled then
     --
-    table.insert(data.raw["technology"]["underwater-pipes"].effects, { type = "unlock-recipe", recipe = reci_underwater_pipe.name })
+    table.insert(data.raw["technology"]["F077UP-technology"].effects, { type = "unlock-recipe", recipe = reci_underwater_pipe.name })
 end
 
 if not reci_underwater_pitg.enabled then
     --
-    table.insert(data.raw["technology"]["underwater-pipes"].effects, { type = "unlock-recipe", recipe = reci_underwater_pitg.name })
+    table.insert(data.raw["technology"]["F077UP-technology"].effects, { type = "unlock-recipe", recipe = reci_underwater_pitg.name })
 end
 
 require("compatibilities.space-age")
