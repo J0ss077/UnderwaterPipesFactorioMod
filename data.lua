@@ -1,24 +1,17 @@
+--// dependencies
+
 require("prototypes.data-carrier")
 
-local modder = require("scripts.data-stage.modder")
+--// variants
 
--- entity
-
-local enty_underwater_pipe = modder.make_underwater_entity(data.raw["pipe"]["pipe"])
-local enty_underwater_pitg = modder.make_underwater_entity(data.raw["pipe-to-ground"]["pipe-to-ground"])
-data:extend({ enty_underwater_pipe, enty_underwater_pitg })
-
--- item
-
-local item_underwater_pipe = modder.make_underwater_item(data.raw["item"]["pipe"])
-local item_underwater_pitg = modder.make_underwater_item(data.raw["item"]["pipe-to-ground"])
-data:extend({ item_underwater_pipe, item_underwater_pitg })
-
--- recipe
-
-local reci_underwater_pipe = modder.make_underwater_recipe(data.raw["recipe"]["pipe"])
-local reci_underwater_pitg = modder.make_underwater_recipe(data.raw["recipe"]["pipe-to-ground"])
-data:extend({ reci_underwater_pipe, reci_underwater_pitg })
+require("scripts.data-stage.modder").make_underwater_variant({
+    {
+        options = { use_default_recipe = true }, item = data.raw["item"]["pipe"], entity = data.raw["pipe"]["pipe"]
+    },
+    {
+        options = { use_default_recipe = true }, item = data.raw["item"]["pipe-to-ground"], entity = data.raw["pipe-to-ground"]["pipe-to-ground"]
+    },
+})
 
 -- technology
 
@@ -41,14 +34,18 @@ data:extend({
     },
 })
 
-if not reci_underwater_pipe.enabled then
+--// recipe unlocks
+
+if not data.raw["recipe"]["F077UP-underwater-pipe"].enabled then
     --
-    table.insert(data.raw["technology"]["F077UP-technology"].effects, { type = "unlock-recipe", recipe = reci_underwater_pipe.name })
+    table.insert(data.raw["technology"]["F077UP-technology"].effects, { type = "unlock-recipe", recipe = "F077UP-underwater-pipe" })
 end
 
-if not reci_underwater_pitg.enabled then
+if not data.raw["recipe"]["F077UP-underwater-pipe-to-ground"].enabled then
     --
-    table.insert(data.raw["technology"]["F077UP-technology"].effects, { type = "unlock-recipe", recipe = reci_underwater_pitg.name })
+    table.insert(data.raw["technology"]["F077UP-technology"].effects, { type = "unlock-recipe", recipe = "F077UP-underwater-pipe-to-ground" })
 end
+
+--// compatibilities
 
 require("compatibilities.space-age")
