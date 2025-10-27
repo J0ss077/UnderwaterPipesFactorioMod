@@ -49,3 +49,5 @@ end
 --// compatibilities
 
 require("compatibilities.space-age")
+
+require("compatibilities.no-pipe-touching")
