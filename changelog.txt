@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.2
+Date: 28-10-2025
+  Info:
+    - Minimal code changes.
+  Modding:
+    - Prototype adaptator upgraded, now technologies can be specified for unlocking recipies.
+
+---------------------------------------------------------------------------------------------------
 Version: 1.2.1
 Date: 27-10-2025
   Info:
@@ -7,7 +15,7 @@ Date: 27-10-2025
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.0
 Date: 26-10-2025
-  Info:
+  Modding:
     - Prototype adaptator upgraded, now YOU can create your own underwater variants.
   Locale:
     - Most locales removed, only english for now (again).

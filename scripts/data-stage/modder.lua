@@ -31,7 +31,9 @@ local entity_sprite_tint = {
 
 local options_placeholder = {
     --
-    use_default_recipe = false
+    use_default_recipe = false,
+    --
+    technologies = { "F077UP-technology" }
 }
 
 local entity_placeholder = {
@@ -112,6 +114,11 @@ function module.make_underwater_variant(coll)
         for i2, elem in ipairs(objs) do
             --
             if type(elem) ~= "table" then error("all data must be tables !!") end
+        end
+
+        if not (objs.entity.type == "pipe" or objs.entity.type == "pipe-to-ground") then
+            --
+            error("entity type must be \"pipe\" or \"pipe-to-ground\"")
         end
 
         local options = implement_placeholder(options_placeholder, objs.options or {})
@@ -205,6 +212,16 @@ function module.make_underwater_variant(coll)
         new_recipe_prototype.results = { { type = "item", name = new_item_prototype.name, amount = 1 } }
 
         data:extend({ new_recipe_prototype })
+
+        if new_recipe_prototype.enabled == false then
+            --
+            for __, tech in ipairs(options.technologies) do
+                --
+                if data.raw["technology"][tech].effects == nil then data.raw["technology"][tech].effects = {} end
+
+                table.insert(data.raw["technology"][tech].effects, { type = "unlock-recipe", recipe = new_recipe_prototype.name })
+            end
+        end
 
         ::F077UP_continue_001::
     end
