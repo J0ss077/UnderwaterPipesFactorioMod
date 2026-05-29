@@ -107,7 +107,7 @@ end
 
 --- @param coll table
 ---
-function module.make_underwater_variant(coll)
+function module.make_underwater_variants(coll)
     --
     for i1, objs in ipairs(coll) do
         --
@@ -121,13 +121,21 @@ function module.make_underwater_variant(coll)
             error("entity type must be \"pipe\" or \"pipe-to-ground\"")
         end
 
+        --------------------------
+        --   (1) load options   --
+        --------------------------
+
         local options = implement_placeholder(options_placeholder, objs.options or {})
+
+        ---------------------------------
+        --   (2) load and mod entity   --
+        ---------------------------------
 
         local new_entity_prototype = implement_placeholder(entity_placeholder, objs.entity or {})
 
-        new_entity_prototype.name = "F077UP-underwater-" .. new_entity_prototype.name
-
         assign_prototype_localised_name(new_entity_prototype, "entity-name", objs.entity.name)
+
+        new_entity_prototype.name = "F077UP-underwater-" .. new_entity_prototype.name
 
         for cover_name, cover in pairs(new_entity_prototype.fluid_box.pipe_covers) do
             --
@@ -144,19 +152,25 @@ function module.make_underwater_variant(coll)
 
         new_entity_prototype.collision_mask = { layers = { ground_tile = true } }
 
+        ------------------------------------------
+        --   (3) save and register new entity   --
+        ------------------------------------------
+
         data:extend({ new_entity_prototype })
 
-        ------------------------------------------------------------------------------
         table.insert(data_carrier.data.underwater_entities, new_entity_prototype.name)
-        ------------------------------------------------------------------------------
+
+        -------------------------------
+        --   (4) load and mod item   --
+        -------------------------------
 
         if not objs.item then goto F077UP_continue_001 end
 
         local new_item_prototype = implement_placeholder(item_placeholder, objs.item or {})
 
-        new_item_prototype.name = "F077UP-underwater-" .. new_item_prototype.name
-
         assign_prototype_localised_name(new_item_prototype, "item-name", objs.item.name)
+
+        new_item_prototype.name = "F077UP-underwater-" .. new_item_prototype.name
 
         utils.parse_item_icons(new_item_prototype)
 
@@ -186,11 +200,17 @@ function module.make_underwater_variant(coll)
 
         new_item_prototype.place_result = new_entity_prototype.name
 
+        new_entity_prototype.minable.result = new_item_prototype.name
+
+        ---------------------------
+        --   (5) save new item   --
+        ---------------------------
+
         data:extend({ new_item_prototype })
 
-        -------------------------------------------------------------
-        new_entity_prototype.minable.result = new_item_prototype.name
-        -------------------------------------------------------------
+        ---------------------------------
+        --   (6) load and mod recipe   --
+        ---------------------------------
 
         if not (objs.recipe or options.use_default_recipe) then goto F077UP_continue_001 end
 
@@ -211,19 +231,29 @@ function module.make_underwater_variant(coll)
 
         new_recipe_prototype.results = { { type = "item", name = new_item_prototype.name, amount = 1 } }
 
+        -----------------------------
+        --   (7) save new recipe   --
+        -----------------------------
+
         data:extend({ new_recipe_prototype })
+
+        ------------------------------------
+        --   (8) register recipe unlock   --
+        ------------------------------------
 
         if new_recipe_prototype.enabled == false then
             --
             for __, tech in ipairs(options.technologies) do
                 --
                 if data.raw["technology"][tech].effects == nil then data.raw["technology"][tech].effects = {} end
-
+                --
                 table.insert(data.raw["technology"][tech].effects, { type = "unlock-recipe", recipe = new_recipe_prototype.name })
             end
         end
 
         ::F077UP_continue_001::
+        --
+        --
     end
 end
 

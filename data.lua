@@ -10,7 +10,7 @@ local pipe_str = "pipe"
 
 local pitg_str = "pipe-to-ground"
 
-require("scripts.data-stage.modder").make_underwater_variant({
+require("scripts.data-stage.modder").make_underwater_variants({
     {
         item = data.raw["item"][pipe_str],
         --
