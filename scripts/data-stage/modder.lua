@@ -2,6 +2,8 @@
 
 local data_carrier = data.raw["mod-data"]["F077UP-data-carrier"]
 
+local definitions = require("scripts.var.definitions")
+
 local utils = require("scripts.others.utils")
 
 local module = {}
@@ -150,7 +152,11 @@ function module.make_underwater_variants(coll)
             mod_entity_sprite(picture_name, picture)
         end
 
-        new_entity_prototype.collision_mask = { layers = { ground_tile = true } }
+        new_entity_prototype.collision_mask = definitions.base_collision_mask
+
+        --new_entity_prototype.integration_patch_render_layer = "above-tiles"
+
+        --new_entity_prototype.fluid_box.render_layer = "above-tiles"
 
         ------------------------------------------
         --   (3) save and register new entity   --
@@ -158,7 +164,7 @@ function module.make_underwater_variants(coll)
 
         data:extend({ new_entity_prototype })
 
-        table.insert(data_carrier.data.underwater_entities, new_entity_prototype.name)
+        table.insert(data_carrier.data.underwater_entities --[[@as table]], new_entity_prototype.name)
 
         -------------------------------
         --   (4) load and mod item   --

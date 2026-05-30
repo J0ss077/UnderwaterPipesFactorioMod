@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.4
+Date: 30-05-2026
+  Changes:
+    - Created new collision_layer for all underwater pipes.
+    - Pipes now won't be able to be placed on lava.
+---------------------------------------------------------------------------------------------------
 Version: 1.2.3
 Date: 30-05-2026
   Info:

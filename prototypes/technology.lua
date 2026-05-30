@@ -9,7 +9,7 @@ data:extend({
             time = 30,
             count = 100,
             ingredients = {
-                { "logistic-science-pack",   1 },
+                { "logistic-science-pack", 1 },
                 { "automation-science-pack", 1 },
             },
         },
