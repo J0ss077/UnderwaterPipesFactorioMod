@@ -8,6 +8,7 @@
     "dependencies": [
         "base >= 2.0.0",
         "? space-age >= 2.0.0",
-        "? no-pipe-touching >= 1.0.0"
+        "? no-pipe-touching >= 1.0.0",
+        "? 5dim_compatibility >= 2.0.0"
     ]
 }

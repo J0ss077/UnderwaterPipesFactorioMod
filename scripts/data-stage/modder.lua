@@ -198,9 +198,9 @@ function module.make_underwater_variants(coll)
             },
         })
 
-        new_item_prototype.place_result = new_entity_prototype.name
-
         new_entity_prototype.minable.result = new_item_prototype.name
+
+        new_item_prototype.place_result = new_entity_prototype.name
 
         ---------------------------
         --   (5) save new item   --

@@ -1,6 +1,6 @@
 Port of **Underwater Pipes**, by **dodo.the.last**
 
-### what is it?
+### What is it?
 
 This mod adds a new **pipe** and **pipe-to-ground**, which you can use to transport fluids through large bodies of water.
 
@@ -8,9 +8,14 @@ This mod adds a new **pipe** and **pipe-to-ground**, which you can use to transp
 
 The mod creates new underwater variants of the **pipe** and **pipe-to-ground** prototypes, which are only allowed to collide with the **ground layer** of the world. Also, to prevent direct connections with any ground pipes, it checks if the placement is too close to ground, preventing it and returning the items (or dropping them to the ground nearby if necessary).
 
+### Modding support
+
+Now **Underwater Pipes Updated** is able to _"adapt"_ other pipe related prototypes. The complete modding documentation is still under development.
+
 ### Known bugs / To do
 
--   Minimal visual overlapping
+- Minimal visual overlapping.
+- Only pipes and undergrounds which are NOT bigger than 1x1 are correctly handled by the mod.
 
 ### Feedback Welcome
 
