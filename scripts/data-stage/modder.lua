@@ -120,7 +120,7 @@ function module.make_underwater_variants(coll)
 
         if not (objs.entity.type == "pipe" or objs.entity.type == "pipe-to-ground") then
             --
-            error("entity type must be \"pipe\" or \"pipe-to-ground\"")
+            error("entity type must be 'pipe' or 'pipe-to-ground'")
         end
 
         --------------------------
@@ -154,9 +154,7 @@ function module.make_underwater_variants(coll)
 
         new_entity_prototype.collision_mask = definitions.base_collision_mask
 
-        --new_entity_prototype.integration_patch_render_layer = "above-tiles"
-
-        --new_entity_prototype.fluid_box.render_layer = "above-tiles"
+        new_entity_prototype.next_upgrade = nil -- prevent impossible upgrade
 
         ------------------------------------------
         --   (3) save and register new entity   --

@@ -1,8 +1,7 @@
 if not mods["no-pipe-touching"] then return end
 
-data.raw["pipe-to-ground"]["F077UP-underwater-pipe-to-ground"]["npt_compat"] = {
-    --
-    override_underground = "pipe-to-ground",
-    --
-    override = "F077UP-underwater-pipe",
-}
+local pipe_str = "pipe"
+local pitg_str = "pipe-to-ground"
+
+data.raw[pipe_str]["F077UP-underwater-" .. pipe_str]["npt_compat"] = { override = "F077UP-underwater-pipe", override_underground = pitg_str }
+data.raw[pitg_str]["F077UP-underwater-" .. pitg_str]["npt_compat"] = { override = "F077UP-underwater-pipe", override_underground = pitg_str }
