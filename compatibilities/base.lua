@@ -13,5 +13,5 @@ local function change_connection(conn)
     --
 end
 
-for __, conn in ipairs(data.raw[pipe_str]["F077UP-underwater-" .. pipe_str].fluid_box.pipe_connections) do change_connection(conn) end
-for __, conn in ipairs(data.raw[pitg_str]["F077UP-underwater-" .. pitg_str].fluid_box.pipe_connections) do change_connection(conn) end
+--for __, conn in ipairs(data.raw[pipe_str]["F077UP-underwater-" .. pipe_str].fluid_box.pipe_connections) do change_connection(conn) end
+--for __, conn in ipairs(data.raw[pitg_str]["F077UP-underwater-" .. pitg_str].fluid_box.pipe_connections) do change_connection(conn) end

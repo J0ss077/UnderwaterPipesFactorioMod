@@ -4,7 +4,7 @@ local data_carrier = data.raw["mod-data"]["F077UP-data-carrier"]
 
 local definitions = require("scripts.var.definitions")
 
-local utils = require("scripts.others.utils")
+local utils = require("scripts.others.common-utils")
 
 local module = {}
 
