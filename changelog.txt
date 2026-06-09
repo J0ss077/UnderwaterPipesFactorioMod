@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.7
+Date: ????
+  Info:
+    - Added underwater pressure pump (used for moving liquids over longer distances).
+  Changes:
+    - Underwater pipes now have x4 maximum pipeline extent.
+  Bugfixes:
+    - Fixed some visual bugs (there are still some).
+---------------------------------------------------------------------------------------------------
 Version: 1.2.6
 Date: 06-06-2026
   Changes:

@@ -1,5 +1,7 @@
 --// dependencies
 
+local utility_constants = data.raw["utility-constants"]["default"]
+
 local data_carrier = data.raw["mod-data"]["F077UP-data-carrier"]
 
 local definitions = require("scripts.var.definitions")
@@ -20,13 +22,13 @@ local entity_sprite_shift = { 0.0, 0.4 }
 
 local entity_sprite_tint = {
     --
-    a = 0.50,
-    --
     r = 0.02,
     --
     g = 0.18,
     --
     b = 0.20,
+    --
+    a = 0.50,
 }
 
 --// placeholders
@@ -65,13 +67,24 @@ local item_placeholder = {
 ---
 local function mod_entity_sprite(sprite_name, sprite)
     --
-    if string.find(sprite_name, "_visualization") then return end
+    if string.find(sprite_name, "visualization") then return end
 
     sprite.blend_mode = entity_sprite_blend_mode
 
-    sprite.shift = entity_sprite_shift
+    local shift = sprite.shift or { 0.0, 0.0 }; sprite.shift = { shift[1] + entity_sprite_shift[1], shift[2] + entity_sprite_shift[2] }
 
-    sprite.tint = entity_sprite_tint
+    local tint = sprite.tint or {
+        r = 1.0,
+        g = 1.0,
+        b = 1.0,
+        a = 1.0,
+    }
+    sprite.tint = {
+        r = tint.r * entity_sprite_tint.r,
+        g = tint.g * entity_sprite_tint.g,
+        b = tint.b * entity_sprite_tint.b,
+        a = tint.a * entity_sprite_tint.a,
+    }
 end
 
 --- @param placeholder table
@@ -151,6 +164,18 @@ function module.make_underwater_variants(coll)
             --
             mod_entity_sprite(picture_name, picture)
         end
+
+        --// increase extent 4 times
+
+        local extent = utility_constants.default_pipeline_extent
+
+        if new_entity_prototype.fluid_box.max_pipeline_extent then
+            --
+            extent = new_entity_prototype.fluid_box.max_pipeline_extent
+            --
+        end new_entity_prototype.fluid_box.max_pipeline_extent = extent * 4
+
+        --// extra fixes
 
         new_entity_prototype.collision_mask = definitions.base_collision_mask
 
