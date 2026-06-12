@@ -12,7 +12,7 @@ data:extend({
 
         energy_source = { type = "void" },
 
-        pumping_speed = 20,
+        pumping_speed = 05,
 
         selection_box = { { -0.5, -1 }, { 0.5, 1 } },
 
@@ -107,19 +107,47 @@ data:extend({
     },
     {
         type = "item",
-        ----
+
         name = "F077UP-pressure-pump",
-        ----
-        icon = "__base__/graphics/icons/pump.png",
 
         stack_size = 50,
+
+        order = "b[pipe]-c[pump]",
+
+        subgroup = "energy-pipe-distribution",
+
+        place_result = "F077UP-pressure-pump",
+
+        drop_sound = { aggregation = { max_count = 1, remove = true }, filename = "__base__/sound/item/fluid-inventory-move.ogg", volume = 0.6 },
+
+        pick_sound = { aggregation = { max_count = 1, remove = true }, filename = "__base__/sound/item/fluid-inventory-pickup.ogg", volume = 0.5 },
+
+        icons = {
+            --
+            { scale = 0.50, icon = "__base__/graphics/icons/pump.png",        icon_size = 64, floating = false, draw_background = true,  shift = { -0, -0 } },
+            --
+            { scale = 0.25, icon = "__base__/graphics/icons/fluid/water.png", icon_size = 64, floating = true,  draw_background = false, shift = { -8, -8 } },
+        },
     },
     {
         type = "recipe",
-        ----
+
         name = "F077UP-pressure-pump",
 
+        enabled = false,
+
+        energy_required = 2,
+
         results = { { type = "item", name = "F077UP-pressure-pump", amount = 1 } },
+
+        ingredients = {
+            --
+            { type = "item", name = "pump",        amount = 01 },
+            --
+            { type = "item", name = "steel-plate", amount = 06 },
+            --
+            { type = "item", name = "concrete",    amount = 15 },
+        },
     },
 })
 
@@ -161,4 +189,4 @@ for __, element in pairs(pump.glass_pictures)  do mod_entity_sprite(element) end
 
 for __, element in pairs(pump.fluid_animation) do mod_entity_sprite(element) end
 
-table.insert(data.raw["mod-data"]["F077UP-data-carrier"].data.underwater_entities --[[@as table]], "F077UP-pressure-pump")
+table.insert(data.raw["mod-data"]["F077UP-data-carrier"].data.underwater_entities--[[@as table]], "F077UP-pressure-pump")

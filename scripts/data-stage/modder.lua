@@ -251,11 +251,11 @@ function module.make_underwater_variants(coll)
 
         new_recipe_prototype.ingredients = new_recipe_prototype.ingredients or {
             --
-            { type = "item", name = objs.item.name, amount = 02 },
+            { type = "item", name = objs.item.name, amount = 01 },
             --
-            { type = "item", name = "steel-plate",  amount = 05 },
+            { type = "item", name = "steel-plate",  amount = 04 },
             --
-            { type = "item", name = "concrete",     amount = 20 },
+            { type = "item", name = "concrete",     amount = 10 },
         }
 
         new_recipe_prototype.results = { { type = "item", name = new_item_prototype.name, amount = 1 } }

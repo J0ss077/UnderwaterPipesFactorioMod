@@ -13,5 +13,8 @@ data:extend({
                 { "automation-science-pack", 1 },
             },
         },
+        effects = {
+            { type = "unlock-recipe", recipe = "F077UP-pressure-pump" }
+        },
     },
 })
