@@ -29,7 +29,9 @@ local function iterate_underwater_entities()
         if name == nil then return nil, nil end --- OUT_OF_BOUNDS
 
         return name, data.raw[guess_entity_type(name)][name]
+    ---
     end
+    ---
     end
 end
 
