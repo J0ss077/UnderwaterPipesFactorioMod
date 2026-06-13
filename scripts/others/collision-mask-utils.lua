@@ -2,35 +2,42 @@ local data_carrier = data.raw["mod-data"]["F077UP-data-carrier"]
 
 local definitions = require("scripts.var.definitions")
 
---- @param filter string?
+local guess_type = { "pump", "pipe", "pipe-to-ground" }
+
+--- @param name string
 ---
+--- @return string?
+---
+local function guess_entity_type(name)
+    ---
+    for __, type in ipairs(guess_type) do
+        --
+        if data.raw[type][name] then return type end
+    end
+end
+
 --- @return (string|function)?
 ---
-local function iterate_underwater_pipes(filter)
+local function iterate_underwater_entities()
 
     local index = 0
 
-    return function() while true do
+    return function() while true do index = index + 1
 
-        index = index + 1
+        local name = data_carrier.data.underwater_entities[index]
 
-        local name = data_carrier.data.underwater_entities[index]; if name == nil then return nil, nil end
+        if name == nil then return nil, nil end --- OUT_OF_BOUNDS
 
-        local type = data.raw["pipe"][name] and "pipe" or "pipe-to-ground"
-
-        if  filter == nil or type == filter then
-            ------
-            return name, data.raw[type][name]
-        end
-        ---
-    end end
+        return name, data.raw[guess_entity_type(name)][name]
+    end
+    end
 end
 
-local module = { }
+local module = {}
 
 function module.reset_collision_masks()
     ---
-    for __, entity in iterate_underwater_pipes() do
+    for __, entity in iterate_underwater_entities() do
         --
         if entity then entity.collision_mask = definitions.base_collision_mask end
     end

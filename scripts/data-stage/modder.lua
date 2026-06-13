@@ -187,7 +187,7 @@ function module.make_underwater_variants(coll)
 
         data:extend({ new_entity_prototype })
 
-        table.insert(data_carrier.data.underwater_entities --[[@as table]], new_entity_prototype.name)
+        table.insert(data_carrier.data.underwater_entities--[[@as table]], new_entity_prototype.name)
 
         -------------------------------
         --   (4) load and mod item   --
