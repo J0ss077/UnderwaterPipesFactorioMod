@@ -51,7 +51,7 @@ local recipe_placeholder = {
     --
     enabled = false,
     --
-    category = "advanced-crafting"
+    categories = { "advanced-crafting" }
 }
 
 local item_placeholder = {
@@ -124,14 +124,14 @@ end
 ---
 function module.make_underwater_variants(coll)
     --
-    for i1, objs in ipairs(coll) do
+    for i1, vars in ipairs(coll) do
         --
-        for i2, elem in ipairs(objs) do
+        for i2, ob in ipairs(vars) do
             --
-            if type(elem) ~= "table" then error("all data must be tables !!") end
+            if type(ob) ~= "table" then error("all data must be tables !!") end
         end
 
-        if not (objs.entity.type == "pipe" or objs.entity.type == "pipe-to-ground") then
+        if not (vars.entity.type == "pipe" or vars.entity.type == "pipe-to-ground") then
             --
             error("entity type must be 'pipe' or 'pipe-to-ground'")
         end
@@ -140,15 +140,15 @@ function module.make_underwater_variants(coll)
         --   (1) load options   --
         --------------------------
 
-        local options = implement_placeholder(options_placeholder, objs.options or {})
+        local options = implement_placeholder(options_placeholder, vars.options or {})
 
         ---------------------------------
         --   (2) load and mod entity   --
         ---------------------------------
 
-        local new_entity_prototype = implement_placeholder(entity_placeholder, objs.entity or {})
+        local new_entity_prototype = implement_placeholder(entity_placeholder, vars.entity or {})
 
-        assign_prototype_localised_name(new_entity_prototype, "entity-name", objs.entity.name)
+        assign_prototype_localised_name(new_entity_prototype, "entity-name", vars.entity.name)
 
         new_entity_prototype.name = "F077UP-underwater-" .. new_entity_prototype.name
 
@@ -187,17 +187,17 @@ function module.make_underwater_variants(coll)
 
         data:extend({ new_entity_prototype })
 
-        table.insert(data_carrier.data.underwater_entities--[[@as table]], new_entity_prototype.name)
+        table.insert(data_carrier.data.underwater_entities[vars.entity.type]--[[@as table]], new_entity_prototype.name)
 
         -------------------------------
         --   (4) load and mod item   --
         -------------------------------
 
-        if not objs.item then goto F077UP_continue_001 end
+        if not vars.item then goto continue end
 
-        local new_item_prototype = implement_placeholder(item_placeholder, objs.item or {})
+        local new_item_prototype = implement_placeholder(item_placeholder, vars.item or {})
 
-        assign_prototype_localised_name(new_item_prototype, "item-name", objs.item.name)
+        assign_prototype_localised_name(new_item_prototype, "item-name", vars.item.name)
 
         new_item_prototype.name = "F077UP-underwater-" .. new_item_prototype.name
 
@@ -241,17 +241,17 @@ function module.make_underwater_variants(coll)
         --   (6) load and mod recipe   --
         ---------------------------------
 
-        if not (objs.recipe or options.use_default_recipe) then goto F077UP_continue_001 end
+        if not (vars.recipe or options.use_default_recipe) then goto continue end
 
-        local new_recipe_prototype = implement_placeholder(recipe_placeholder, objs.recipe or {})
+        local new_recipe_prototype = implement_placeholder(recipe_placeholder, vars.recipe or {})
 
         new_recipe_prototype.name = new_recipe_prototype.name and ("F077UP-underwater-" .. new_recipe_prototype.name) or new_item_prototype.name
 
-        assign_prototype_localised_name(new_recipe_prototype, "recipe-name", objs.recipe and objs.recipe.name or objs.item.name)
+        assign_prototype_localised_name(new_recipe_prototype, "recipe-name", vars.recipe and vars.recipe.name or vars.item.name)
 
         new_recipe_prototype.ingredients = new_recipe_prototype.ingredients or {
             --
-            { type = "item", name = objs.item.name, amount = 01 },
+            { type = "item", name = vars.item.name, amount = 01 },
             --
             { type = "item", name = "steel-plate",  amount = 04 },
             --
@@ -280,7 +280,7 @@ function module.make_underwater_variants(coll)
             end
         end
 
-        ::F077UP_continue_001::
+        ::continue::
         --
         --
     end

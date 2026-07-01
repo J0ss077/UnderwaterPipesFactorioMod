@@ -189,4 +189,4 @@ for __, element in pairs(pump.glass_pictures)  do mod_entity_sprite(element) end
 
 for __, element in pairs(pump.fluid_animation) do mod_entity_sprite(element) end
 
-table.insert(data.raw["mod-data"]["F077UP-data-carrier"].data.underwater_entities--[[@as table]], "F077UP-pressure-pump")
+table.insert(data.raw["mod-data"]["F077UP-data-carrier"].data.underwater_entities["pump"]--[[@as table]], "F077UP-pressure-pump")

@@ -1,8 +1,11 @@
 local filter = {}
 
-for __, name in ipairs(prototypes.mod_data["F077UP-data-carrier"].data.underwater_entities--[[@as table]]) do
+for class, list in pairs(prototypes.mod_data["F077UP-data-carrier"].data.underwater_entities--[[@as table]]) do
     --
-    table.insert(filter, { filter = "name", name = name })
+    for i0, name in ipairs(list) do
+        --
+        table.insert(filter, { filter = "name", name = name })
+    end
 end
 
 local function handler(arguments)

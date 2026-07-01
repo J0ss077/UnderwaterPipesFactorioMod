@@ -3,7 +3,11 @@ data:extend({
         name = "F077UP-data-carrier",
         type = "mod-data",
         data = {
-            underwater_entities = {},
+            underwater_entities = {
+                ["pump"] = {},
+                ["pipe"] = {},
+                ["pipe-to-ground"] = {},
+            },
         },
     },
 })

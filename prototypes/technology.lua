@@ -5,16 +5,14 @@ data:extend({
         prerequisites = { "concrete", "steel-processing" },
         icon = "__underwater-pipes-updated__/graphics/technology.png",
         icon_size = 128,
+        effects = { { type = "unlock-recipe", recipe = "F077UP-pressure-pump" } },
         unit = {
             time = 30,
             count = 100,
             ingredients = {
-                { "logistic-science-pack", 1 },
+                { "logistic-science-pack",   1 },
                 { "automation-science-pack", 1 },
             },
-        },
-        effects = {
-            { type = "unlock-recipe", recipe = "F077UP-pressure-pump" }
         },
     },
 })
